@@ -15,9 +15,9 @@ def arch_to_toolchain(arch):
 
 class ScipyRecipe(CompiledComponentsPythonRecipe):
 
-    version = 'maintenance/1.11.x'
+    version = 'maintenance/1.14.x'
     url = 'git+https://github.com/scipy/scipy.git'
-    git_commit = 'b430bf54b5064465983813e2cfef3fcb86c3df07'  # version 1.11.3
+    git_commit = '92d2a8592782ee19a1161d0bf3fc2241ba78bb63'  # version 1.11.3
     site_packages_name = 'scipy'
     depends = ['setuptools', 'cython', 'numpy', 'lapack', 'pybind11']
     call_hostpython_via_targetpython = False

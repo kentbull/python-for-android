@@ -55,7 +55,7 @@ class Python3Recipe(TargetPythonRecipe):
         :class:`~pythonforandroid.python.GuestPythonRecipe`
     '''
 
-    version = '3.11.5'
+    version = '3.12.6'
     url = 'https://www.python.org/ftp/python/{version}/Python-{version}.tgz'
     name = 'python3'
 
@@ -71,7 +71,8 @@ class Python3Recipe(TargetPythonRecipe):
         ('patches/py3.8.1.patch', version_starts_with("3.8")),
         ('patches/py3.8.1.patch', version_starts_with("3.9")),
         ('patches/py3.8.1.patch', version_starts_with("3.10")),
-        ('patches/cpython-311-ctypes-find-library.patch', version_starts_with("3.11")),
+        ('patches/cpython-311-ctypes-find-library.patch', version_starts_with("3.11"))
+        ('patches/cpython-312-ctypes-find-library.patch', version_starts_with("3.12")),
     ]
 
     if shutil.which('lld') is not None:
@@ -81,6 +82,7 @@ class Python3Recipe(TargetPythonRecipe):
             ("patches/py3.8.1_fix_cortex_a8.patch", version_starts_with("3.9")),
             ("patches/py3.8.1_fix_cortex_a8.patch", version_starts_with("3.10")),
             ("patches/py3.8.1_fix_cortex_a8.patch", version_starts_with("3.11")),
+            ("patches/py3.8.1_fix_cortex_a8.patch", version_starts_with("3.12")),
         ]
 
     depends = ['hostpython3', 'sqlite3', 'openssl', 'libffi']
@@ -105,7 +107,7 @@ class Python3Recipe(TargetPythonRecipe):
         '--enable-loadable-sqlite-extensions'
     )
 
-    if version_starts_with("3.11"):
+    if version_starts_with("3.11") or version_starts_with("3.12"):
         configure_args += ('--with-build-python={python_host_bin}',)
 
     '''The configure arguments needed to build the python recipe. Those are
